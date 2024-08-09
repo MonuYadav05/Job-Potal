@@ -24,7 +24,7 @@ const CreateJob = () => {
   const onSubmit = (data) => {
     data.skill = selectedOption;
     axios
-      .post("http://localhost:3000/post-job", data)
+      .post(`${window.location.origin}/post-job`, data)
       .then((res) => {
         console.log(res);
         navigate("/");

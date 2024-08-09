@@ -26,7 +26,7 @@ const UpdateJob = () => {
   const onSubmit = (data) => {
     data.skill = selectedOption;
     axios
-      .patch(`http://localhost:3000/update-job/${id}`, data)
+      .patch(`${window.location.origin}/update-job/${id}`, data)
       .then((res) => {
         console.log(res);
         navigate("/my-job");

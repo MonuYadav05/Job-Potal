@@ -32,7 +32,7 @@ const JobDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/edit-job/${id}`)
+      .get(`${window.location.origin}/edit-job/${id}`)
       .then((res) => setJob(res.data[0]));
   }, []);
   console.log(job);

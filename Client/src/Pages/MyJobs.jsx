@@ -10,7 +10,7 @@ const MyJobs = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`${window.location.origin}/all-jobs`)
+    fetch("http://localhost:3000/all-jobs")
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);

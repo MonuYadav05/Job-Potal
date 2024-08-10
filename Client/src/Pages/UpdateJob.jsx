@@ -26,7 +26,7 @@ const UpdateJob = () => {
   const onSubmit = (data) => {
     data.skill = selectedOption;
     axios
-      .patch(`http://localhost:3000/update-job/${id}`, data)
+      .patch(`https://job-portal-client-puce.vercel.app/update-job/${id}`, data)
       .then((res) => {
         console.log(res);
         navigate("/my-job");

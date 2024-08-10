@@ -5,7 +5,13 @@ const port = process.env.port || 3000;
 require("dotenv").config();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://job-portal-client-puce.vercel.app/"],
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+    credentials: true,
+  })
+);
 console.log(process.env.DB_USER, process.env.DB_PASS);
 const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@job-portal.8grox.mongodb.net/?retryWrites=true&w=majority&appName=job-portal`;

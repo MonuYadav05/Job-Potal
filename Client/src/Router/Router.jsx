@@ -20,9 +20,7 @@ const router = createBrowserRouter([
         path: "/edit-job/:id",
         element: <UpdateJob />,
         loader: ({ params }) =>
-          fetch(
-            `https://job-portal-client-puce.vercel.app/edit-job/${params.id}`
-          ),
+          fetch(`${import.meta.env.VITE_API_URL}/edit-job/${params.id}`),
       },
       { path: "/job/:id", element: <JobDetail /> },
     ],

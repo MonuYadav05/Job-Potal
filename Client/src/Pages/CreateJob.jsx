@@ -24,7 +24,7 @@ const CreateJob = () => {
   const onSubmit = (data) => {
     data.skill = selectedOption;
     axios
-      .post("https://job-portal-client-puce.vercel.app/post-job", data)
+      .post(`${import.meta.env.VITE_API_URL}/post-job`, data)
       .then((res) => {
         console.log(res);
         navigate("/");

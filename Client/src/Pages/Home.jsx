@@ -14,7 +14,7 @@ const Home = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("https://job-portal-client-puce.vercel.app//all-jobs")
+    fetch(`${import.meta.env.VITE_API_URL}/all-jobs`)
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);

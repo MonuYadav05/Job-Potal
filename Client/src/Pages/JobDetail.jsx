@@ -32,8 +32,8 @@ const JobDetail = () => {
 
   useEffect(() => {
     axios
-      .get(`https://job-portal-client-puce.vercel.app/edit-job/${id}`)
-      .then((res) => setJob(res.data[0]));
+      .get(`${import.meta.env.VITE_API_URL}/edit-job/${id}`)
+      .then((res) => setJob(res.data));
   }, []);
   console.log(job);
   return (

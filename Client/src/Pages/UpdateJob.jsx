@@ -7,7 +7,7 @@ import axios from "axios";
 const UpdateJob = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const job = useLoaderData()[0];
+  const job = useLoaderData();
   const [selectedOption, setSelectedOption] = useState(null);
 
   const { register, handleSubmit } = useForm();
@@ -26,7 +26,7 @@ const UpdateJob = () => {
   const onSubmit = (data) => {
     data.skill = selectedOption;
     axios
-      .patch(`https://job-portal-client-puce.vercel.app/update-job/${id}`, data)
+      .patch(`${import.meta.env.VITE_API_URL}/update-job/${id}`, data)
       .then((res) => {
         console.log(res);
         navigate("/my-job");

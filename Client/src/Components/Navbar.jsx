@@ -20,7 +20,7 @@ const Navbar = () => {
   return (
     <header>
       <nav className="flex justify-between mt-5 ">
-        <div className="flex justify-center gap-2 text-2xl text-primary gap-2  ml-5 md:ml-14">
+        <div className="flex justify-center text-2xl text-primary gap-2  ml-5 md:ml-14">
           <a href="/">
             <img src="logo.png" alt="logo" className="w-6 h-7 " />
           </a>

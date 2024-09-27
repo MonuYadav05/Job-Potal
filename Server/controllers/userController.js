@@ -7,7 +7,8 @@ const jwt = require("jsonwebtoken");
 //   ...............otp................    //
 exports.sendotp = async (req, res) => {
   try {
-    const { email } = req.body;
+    let { email } = req.body;
+    email = email.toLowerCase();
     const userPresent = await User.findOne({ email });
     if (userPresent) {
       //check if already registered
@@ -67,15 +68,11 @@ exports.sendotp = async (req, res) => {
 exports.signup = async (req, res) => {
   try {
     //fetch data
-    const {
-      firstName,
-      lastName,
-      email,
-      password,
-      confirmPassword,
-      accountType,
-      otp,
-    } = req.body;
+    const { firstName, lastName, password, confirmPassword, accountType, otp } =
+      req.body;
+
+    let { email } = req.body;
+    email = email.toLowerCase();
     //validate
     if (
       !firstName ||

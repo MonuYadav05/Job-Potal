@@ -1,25 +1,16 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({});
-
-export const apiConnector = async (
-  method,
-  url,
-  bodyData = null,
-  headers = {},
-  params = {}
-) => {
+export const apiConnector = (method, url, bodyData, headers, params) => {
   try {
-    const response = await axiosInstance({
-      method,
-      url,
-      data: bodyData,
-      headers,
-      params,
+    return axiosInstance({
+      method: method,
+      url: url,
+      data: bodyData ? bodyData : {}, // `data` is used to send the request body
+      headers: headers ? headers : { "Content-Type": "application/json" }, // Ensure content-type is correct
+      params: params ? params : {},
     });
-    return response.data;
-  } catch (error) {
-    console.error("API request error:", error.response || error.message);
-    throw error;
+  } catch (err) {
+    console.log("errr is coming here");
   }
 };

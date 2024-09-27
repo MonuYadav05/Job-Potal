@@ -8,13 +8,12 @@ import MyJobs from "./Pages/MyJobs";
 import JobDetail from "./Pages/JobDetail";
 import UpdateJob from "./Pages/UpdateJob";
 import Signup from "./Pages/SignUp";
+import VerifyEmail from "./Pages/VerifyEmail";
 
 function App() {
   return (
     <>
-      <nav>
-        <Navbar />
-      </nav>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/post-job" element={<CreateJob />}></Route>
@@ -23,6 +22,7 @@ function App() {
         <Route path="/edit-job/:id" element={<UpdateJob />}></Route>
         <Route path="/job/:id" element={<JobDetail />}></Route>
         <Route path="/sign-up" element={<Signup />}></Route>
+        <Route path="/verify-email" element={<VerifyEmail />}></Route>
       </Routes>
     </>
   );

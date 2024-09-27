@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setSignupData } from "../redux/features/authSlice";
+import { sendOtp } from "../services/operations/authApi";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +15,7 @@ const SignUp = () => {
     accountType: "Employer",
   });
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
@@ -32,14 +36,29 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const signUpData = formData;
-    console.log(signUpData);
+    if (formData.password !== formData.confirmPassword) {
+      toast.error("Passwords Do Not Match");
+      return;
+    }
+
+    const signUpData = { ...formData };
+    console.log(signUpData.email);
 
     dispatch(setSignupData(signUpData));
+    dispatch(sendOtp(signUpData.email, navigate));
+
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      accountType: "Employer",
+    });
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-200">
+    <div className="flex justify-center items-center h-screen mt-5 bg-gray-200">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-[#3575e2]">Sign Up</h2>
         <form onSubmit={handleSubmit} className="space-y-4">

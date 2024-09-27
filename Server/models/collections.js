@@ -5,4 +5,5 @@ const jobsCollection = db.collection("demoJobs");
 const User = db.collection("users");
 const OTP = db.collection("otp");
 const Profile = db.collection("profile");
+
 module.exports = { jobsCollection, User, OTP, Profile };

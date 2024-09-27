@@ -1,16 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
-import { useNavigate, useLoaderData, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
 const UpdateJob = () => {
   const { id } = useParams();
+  // console.log(id);
   const navigate = useNavigate();
-  const job = useLoaderData();
   const [selectedOption, setSelectedOption] = useState(null);
-
+  const [job, setJob] = useState({});
   const { register, handleSubmit } = useForm();
+
+  useEffect(() => {
+    const fetchJob = async () => {
+      await axios
+        .get(`${import.meta.env.VITE_API_URL}/edit-job/${id}`)
+        .then((result) => {
+          // console.log(result.data);
+          // console.log(job);
+          setJob(result.data);
+        })
+        .catch((err) => console.log(err));
+    };
+    fetchJob();
+  }, [id]);
 
   const options = [
     { value: "JavaScript", label: "JavaScript" },

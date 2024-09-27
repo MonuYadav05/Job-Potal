@@ -160,7 +160,7 @@ exports.signup = async (req, res) => {
       password: hashedPassword,
       accountType,
       approved: true,
-      additionalDetails: profileDetails._id,
+      additionalDetails: profileDetails.insertedId,
       image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} ${lastName}`,
     });
 

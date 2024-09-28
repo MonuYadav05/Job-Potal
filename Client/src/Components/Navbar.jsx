@@ -2,9 +2,13 @@ import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { FaBarsStaggered } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
+import { useSelector } from "react-redux";
+import ProfileDropdown from "./ProfileDropdown";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { token, isLoading } = useSelector((state) => state.auth);
+  const { user, loading } = useSelector((state) => state.profile);
 
   const handleMenuToggler = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -41,17 +45,29 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div className=" hidden lg:flex justify-center gap-4 mr-14">
-          <Link to="/login" className="pt-1 px-5 text-blue border h-9 rounded">
-            Log in
-          </Link>
-          <Link
-            to="/sign-up"
-            className="pt-1 px-5 border rounded h-9 bg-blue text-white"
-          >
-            Sign up
-          </Link>
-        </div>
+        {token === null && (
+          <div>
+            {" "}
+            <div className=" hidden lg:flex justify-center gap-4 mr-14">
+              <Link
+                to="/login"
+                className="pt-1 px-5 text-blue border h-9 rounded"
+              >
+                Log in
+              </Link>
+              <Link
+                to="/sign-up"
+                className="pt-1 px-5 border rounded h-9 bg-blue text-white"
+              >
+                Sign up
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {token !== null && <ProfileDropdown />}
+
+        {/* nav for mobile */}
 
         <div className="md:hidden block mr-5 mt-2">
           <button onClick={handleMenuToggler}>
@@ -64,7 +80,6 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* nav for mobile */}
       <div
         className={`text-sm text-white py-5 mt-5 mr-5 ${
           isMenuOpen ? "" : "hidden"

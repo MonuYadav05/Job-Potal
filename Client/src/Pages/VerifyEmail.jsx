@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import OtpInput from "react-otp-input";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { signUp } from "../services/operations/authApi";
 
 const VerifyEmail = () => {
   const [otp, setOtp] = useState("");
@@ -13,7 +14,7 @@ const VerifyEmail = () => {
     if (!signupData) {
       navigate("/sign-up");
     }
-    console.log(signupData);
+    // console.log(signupData);
   }, []);
   const handleChange = (otpValue) => {
     setOtp(otpValue);
@@ -22,7 +23,10 @@ const VerifyEmail = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Entered OTP:", otp);
-    const data = { ...signupData };
+    const formData = { ...signupData, otp: otp };
+    console.log(formData);
+
+    dispatch(signUp(formData, navigate));
   };
 
   return (

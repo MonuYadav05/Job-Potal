@@ -4,7 +4,7 @@ import { setSignupData } from "../redux/features/authSlice";
 import { sendOtp } from "../services/operations/authApi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-
+import { Link } from "react-router-dom";
 const SignUp = () => {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -60,7 +60,9 @@ const SignUp = () => {
   return (
     <div className="flex justify-center items-center h-screen mt-5 bg-gray-200">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-[#3575e2]">Sign Up</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-[#3575e2]">
+          Sign Up
+        </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-gray-700">First Name</label>
@@ -140,6 +142,15 @@ const SignUp = () => {
           >
             Sign Up
           </button>
+          <p className="text-center">
+            Already SignedUp {"  "}
+            <Link
+              className="text-[#3575e2] font-semibold hover:underline"
+              to={"/login"}
+            >
+              Login
+            </Link>
+          </p>
         </form>
       </div>
     </div>

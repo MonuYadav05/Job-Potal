@@ -120,8 +120,6 @@ exports.signup = async (req, res) => {
       (a, b) => b.createdAt - a.createdAt
     )[0];
 
-    console.log(recentOtp);
-
     //validateOtp
     if (!recentOtp) {
       return res.status(400).json({
@@ -178,8 +176,10 @@ exports.signup = async (req, res) => {
 //login
 exports.login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { password, accountType } = req.body;
+    let { email } = req.body;
 
+    email = email.toLowerCase();
     //validate data
     if (!email || !password) {
       return res.status(403).json({
@@ -197,6 +197,12 @@ exports.login = async (req, res) => {
       });
     }
 
+    if (user.accountType !== accountType) {
+      return res.status(400).json({
+        success: false,
+        message: "Select correct account type",
+      });
+    }
     //match password
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (!passwordMatch) {

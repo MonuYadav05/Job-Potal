@@ -47,7 +47,7 @@ const SalaryPage = () => {
       </div>
 
       {/* display data */}
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 md:grid-cols-1 gap-10 mx-20 my-20">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10 mx-20 my-20">
         {salary.map((data) => {
           return (
             <div key={data.id} className=" px-4 py-5 shadow-lg">

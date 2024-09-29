@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const MyJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const { user } = useSelector((state) => state.profile);
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`${import.meta.env.VITE_API_URL}/all-jobs`)
+    fetch(`${import.meta.env.VITE_API_URL}/myJobs/${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);
@@ -90,53 +92,53 @@ const MyJobs = () => {
             </Link>
           </div>
 
-          <table className="w-full">
-            <thead>
-              <tr className="grid grid-cols-6 h-9 py-2 border text-sm">
-                <th className="font-semibold">NO.</th>
-                <th className="font-semibold">TITLE</th>
-                <th className="font-semibold">COMPANY NAME</th>
-                <th className="font-semibold">SALARY</th>
-                <th className="font-semibold">EDIT</th>
-                <th className="font-semibold">DELETE</th>
-              </tr>
-            </thead>
-            {isLoading ? (
-              <p className="flex justify-center align-center">Loading...</p>
-            ) : (
+          {/* Moved the loading message outside the table */}
+          {isLoading ? (
+            <p className="flex justify-center align-center">Loading...</p>
+          ) : (
+            <table className="w-full">
+              <thead>
+                <tr className="grid grid-cols-6 h-9 py-2 border text-sm">
+                  <th className="font-semibold">NO.</th>
+                  <th className="font-semibold">TITLE</th>
+                  <th className="font-semibold">COMPANY NAME</th>
+                  <th className="font-semibold">SALARY</th>
+                  <th className="font-semibold">EDIT</th>
+                  <th className="font-semibold">DELETE</th>
+                </tr>
+              </thead>
               <tbody>
-                {currentJobs.map((job, i) => {
-                  return (
-                    <tr
-                      className="grid grid-cols-6 h-9 py-1 text-center text-sm text-gray-700 my-7"
-                      key={i}
-                    >
-                      <td>{i + 1}</td>
-                      <td>{job.jobTitle}</td>
-                      <td>{job.companyName}</td>
-                      <td>
-                        ${job.minPrice} - {job.maxPrice}k
-                      </td>
-                      <td>
-                        <Link to={`/edit-job/${job._id}`}>edit</Link>
-                      </td>
-                      <td>
-                        <button
-                          onClick={() => handleDelete(job._id)}
-                          className="border bg-red-700 px-4 py-1 text-white"
-                        >
-                          Delete
-                        </button>{" "}
-                      </td>
-                    </tr>
-                  );
-                })}
+                {currentJobs.map((job, i) => (
+                  <tr
+                    className="grid grid-cols-6 h-9 py-1 text-center text-sm text-gray-700 my-7"
+                    key={i}
+                  >
+                    <td>{i + 1}</td>
+                    <td>{job.jobTitle}</td>
+                    <td>{job.companyName}</td>
+                    <td>
+                      ${job.minPrice} - {job.maxPrice}k
+                    </td>
+                    <td>
+                      <Link to={`/edit-job/${job._id}`}>edit</Link>
+                    </td>
+                    <td>
+                      <button
+                        onClick={() => handleDelete(job._id)}
+                        className="border bg-red-700 px-4 py-1 text-white"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
-            )}
-          </table>
+            </table>
+          )}
         </div>
       </div>
-      {/* pagination */}
+
+      {/* Pagination */}
       <div className="flex justify-center text-black space-x-8 mt-4">
         {currentPage > 1 && (
           <button onClick={prevPage} className="hover:underline">

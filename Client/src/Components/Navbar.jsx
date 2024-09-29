@@ -8,7 +8,7 @@ import ProfileDropdown from "./ProfileDropdown";
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { token, isLoading } = useSelector((state) => state.auth);
-  const { user, loading } = useSelector((state) => state.profile);
+  // const { user, loading } = useSelector((state) => state.profile);
 
   const handleMenuToggler = () => {
     setIsMenuOpen(!isMenuOpen);

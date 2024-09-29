@@ -3,12 +3,14 @@ import { useForm } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const CreateJob = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const navigate = useNavigate();
 
   const { register, handleSubmit } = useForm();
+  const { user } = useSelector((state) => state.profile);
 
   const options = [
     { value: "JavaScript", label: "JavaScript" },
@@ -23,6 +25,8 @@ const CreateJob = () => {
 
   const onSubmit = (data) => {
     data.skill = selectedOption;
+    data.postedBy = user.email;
+    console.log(data);
     axios
       .post(`${import.meta.env.VITE_API_URL}/post-job`, data)
       .then((res) => {
@@ -188,16 +192,6 @@ const CreateJob = () => {
             ></textarea>
           </div>
 
-          {/* last-row */}
-          <div className="md:w-full  flex flex-col gap-2">
-            <label className="text-lg text-gray-800">Job Posted by</label>
-            <input
-              type="email"
-              placeholder="your email"
-              {...register("postedBy", { required: true })}
-              className="h-9 text-sm border placeholder:text-gray-400 pl-2"
-            />
-          </div>
           <input
             type="submit"
             className="my-5 px-7 border rounded h-10 bg-blue text-white"

@@ -113,3 +113,5 @@ export function logout(navigate) {
     toast.dismiss(toastId);
   };
 }
+
+export function resetPassword() {}

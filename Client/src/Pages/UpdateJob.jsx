@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const UpdateJob = () => {
   const { id } = useParams();
@@ -11,14 +12,16 @@ const UpdateJob = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [job, setJob] = useState({});
   const { register, handleSubmit } = useForm();
+  const { user } = useSelector((state) => state.profile);
 
   useEffect(() => {
     const fetchJob = async () => {
       await axios
         .get(`${import.meta.env.VITE_API_URL}/edit-job/${id}`)
         .then((result) => {
-          // console.log(result.data);
-          // console.log(job);
+          if (result.data.postedBy !== user.email) {
+            navigate("/");
+          }
           setJob(result.data);
         })
         .catch((err) => console.log(err));
@@ -210,17 +213,6 @@ const UpdateJob = () => {
             ></textarea>
           </div>
 
-          {/* last-row */}
-          <div className="md:w-full  flex flex-col gap-2">
-            <label className="text-lg text-gray-800">Job Posted by</label>
-            <input
-              type="email"
-              defaultValue={job.postedBy}
-              placeholder="your email"
-              {...register("postedBy", { required: true })}
-              className="h-9 text-sm border placeholder:text-gray-400 pl-2"
-            />
-          </div>
           <input
             type="submit"
             className="my-5 px-7 border rounded h-10 bg-blue text-white"

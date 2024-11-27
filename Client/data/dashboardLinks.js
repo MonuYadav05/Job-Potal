@@ -1,0 +1,51 @@
+export const sidebarLinks = [
+  {
+    id: 1,
+    name: "Dashboard",
+    path: "/dashboard/employee",
+    type: "Employee",
+    icon: "VscDashboard",
+  },
+  {
+    id: 2,
+    name: "My Resume",
+    path: "/dashboard/my-resume",
+    type: "Employee",
+    icon: "VscVm",
+  },
+  {
+    id: 3,
+    name: "Internships",
+    path: "/dashboard/internships",
+    type: "Employee",
+    icon: "VscAdd",
+  },
+  {
+    id: 4,
+    name: "Jobs",
+    path: "/dashboard/Jobs",
+    type: "Employee",
+    icon: "VscMortarBoard",
+  },
+  {
+    id: 5,
+    name: "Messages",
+    path: "/dashboard/messages",
+    type: "Employee",
+    icon: "VscHistory",
+  },
+  {
+    id: 6,
+    name: "Reach Out",
+    path: "/dashboard/reach-out",
+    type: "Employee",
+    icon: "VscHistory",
+  },
+  {
+    id: 7,
+    name: "My Account",
+    path: "/dashboard/my-account",
+    type: "Employee",
+    icon: "VscHistory",
+  },
+];

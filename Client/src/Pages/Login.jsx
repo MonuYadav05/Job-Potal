@@ -88,13 +88,18 @@ const Login = () => {
         >
           Login
         </button>
-        <p className="text-center">
-          New to JobPortal{"  "}
+        <p className="text-center flex justify-between">
+          <Link
+            className="text-[#3575e2] font-semibold hover:underline"
+            to={"/forget-password"}
+          >
+            Forget Password
+          </Link>
           <Link
             className="text-[#3575e2] font-semibold hover:underline"
             to={"/sign-up"}
           >
-            SignUp
+            New to JobPortal-SignUp
           </Link>
         </p>
       </form>

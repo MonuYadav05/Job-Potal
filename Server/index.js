@@ -5,9 +5,10 @@ const jobRoutes = require("./routes/jobRoutes");
 const AuthRoutes = require("./routes/AuthRoutes");
 const { auth } = require("./middlewares/auth");
 const cookieParser = require("cookie-parser");
+const crypto = require("crypto");
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 app.use(cookieParser());
 app.use(express.json());

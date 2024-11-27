@@ -11,6 +11,6 @@ export const apiConnector = (method, url, bodyData, headers, params) => {
       params: params ? params : {},
     });
   } catch (err) {
-    console.log("errr is coming here");
+    console.log("errr is coming in apiconnector");
   }
 };

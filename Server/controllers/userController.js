@@ -3,6 +3,7 @@ const otpGenerator = require("otp-generator");
 const mailSender = require("../utils/mailSender");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 
 //   ...............otp................    //
 exports.sendotp = async (req, res) => {
@@ -298,7 +299,7 @@ exports.changePassword = async (req, res) => {
     try {
       const mailresponse = mailSender(
         email,
-        "Email from StudyNotion",
+        "Email from JobPortal",
         passwordUpdated(
           updatedUserDetails.email,
           `Password updated successfully for ${updatedUserDetails.firstName} ${updatedUserDetails.lastName}`
@@ -317,5 +318,107 @@ exports.changePassword = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
+exports.forgatPassword = async (req, res) => {
+  try {
+    let { email } = req.body;
+    // console.log(email);
+    email = email.toLowerCase();
+    const userPresent = await User.findOne({ email });
+    if (!userPresent) {
+      return res.status(404).josn({
+        success: false,
+        message: "you are not signedUp please signup",
+      });
+    }
+
+    //generate random unique string
+    function generateRandonString(lenght) {
+      return crypto.randomBytes(lenght).toString("hex");
+    }
+    const String = generateRandonString(16);
+    const uniqueString = `http://localhost:5173/resetPassword/${String}`;
+
+    const expiryTime = new Date(Date.now() + 2 * 60 * 1000); // 2 minutes from now
+    const updateUser = await User.updateOne(
+      { email },
+      {
+        $set: {
+          forgetPasswordString: String,
+          forgetPasswordExpiry: expiryTime,
+        },
+      }
+    );
+
+    try {
+      const mailResponse = mailSender(
+        email,
+        "Forget Password Email From JobPortal-Monu Yadav",
+        `Set New Password - ${uniqueString}`
+      );
+
+      return res.status(200).json({
+        success: true,
+        message: "Mail sent to reset your password",
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  } catch (err) {
+    // console.log("error in forget password", err);
+    return res.status(500).json({
+      success: false,
+      message: "server error ",
+    });
+  }
+};
+
+exports.resetPassword = async (req, res) => {
+  const { password, confirmPassword, randomString } = req.body;
+  // console.log(randomString, password, confirmPassword);
+  try {
+    const user = await User.findOne({
+      forgetPasswordString: randomString.string,
+    });
+    const isExpired = new Date() > user.forgetPasswordExpiry;
+    if (isExpired) {
+      return res.status(404).json({
+        success: false,
+        message: "Link is expired , Cannot reset password ",
+      });
+    }
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "Use the Most Recent Link",
+      });
+    }
+    if (password !== confirmPassword) {
+      return res.status(400).json({
+        success: false,
+        message: "confirmPassword is not matching",
+      });
+    }
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const updatedUser = await User.findOneAndUpdate(
+      { email: user.email },
+      {
+        $set: {
+          password: hashedPassword,
+        },
+      }
+    );
+    return res.status(200).json({
+      success: true,
+      message: "password updated successfully",
+    });
+  } catch (err) {
+    // console.log("err in resetpass", err);
+    return res.status(500).json({
+      success: false,
+      message: "password cannot update now",
+    });
   }
 };

@@ -10,6 +10,9 @@ export default {
       width: {
         "45p": "48%",
       },
+      boxShadow: {
+        "custom-red": "red 0px 0px 250px, red 0px 0px 105px, red 0px 0px 101px",
+      },
     },
   },
   plugins: [],

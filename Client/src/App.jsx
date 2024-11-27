@@ -13,6 +13,8 @@ import Login from "./Pages/Login";
 import OpenRoute from "./Components/Auth/OpenRoute";
 import PrivateRoute from "./Components/Auth/PrivateRoute";
 import Dashboard from "./Pages/Dashboard";
+import ForgetPassword from "./Pages/ForgetPassword";
+import ResetPass from "./Components/Auth/ResetPass";
 
 function App() {
   return (
@@ -84,6 +86,9 @@ function App() {
             </PrivateRoute>
           }
         ></Route>
+
+        <Route path="/forget-password" element={<ForgetPassword />}></Route>
+        <Route path="/resetPassword/:string" element={<ResetPass />}></Route>
       </Routes>
     </>
   );

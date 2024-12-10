@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8000";
+const BASE_URL = import.meta.env.BASE_URL;
 
 // AUTH ENDPOINTS
 export const endpoints = {

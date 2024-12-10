@@ -6,13 +6,8 @@
     ],
     "routes": [
        { "src": "/(.*)", "dest": "/" }
-    ],
+    ]
     
-"rewrites": [
-          {
-            "source": "/api/(.*)",
-            "destination": "https://job-portal-client-puce.vercel.app"
-          }
-        ]
+
       
  }

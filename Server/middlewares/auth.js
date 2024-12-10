@@ -35,11 +35,11 @@ exports.auth = (req, res, next) => {
   }
 };
 
-//.................isStudent...............//
+//.................employee...............//
 exports.isStudent = (req, res, next) => {
   try {
-    const accountType = req.user.accountType;
-    if (accountType !== "Student") {
+    const accountType = req.user.role;
+    if (accountType !== "Employee") {
       return res.status(401).json({
         success: false,
         message: "this is protected route for student only",
@@ -54,11 +54,11 @@ exports.isStudent = (req, res, next) => {
   }
 };
 
-//.................isInstructor...............//
+//.................employer...............//
 exports.isInstructor = (req, res, next) => {
   try {
     const accountType = req.user.accountType;
-    if (accountType !== "Instructor") {
+    if (accountType !== "Employer") {
       return res.status(401).json({
         success: false,
         message: "this is protected route for Instructor only",

@@ -31,6 +31,7 @@ const JobDetail = () => {
   };
 
   useEffect(() => {
+    console.log(`${import.meta.env.VITE_BASE_URL}`);
     axios
       .get(`${import.meta.env.VITE_API_URL}/edit-job/${id}`)
       .then((res) => setJob(res.data));

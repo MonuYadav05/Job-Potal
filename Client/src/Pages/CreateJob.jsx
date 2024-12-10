@@ -38,9 +38,10 @@ const CreateJob = () => {
   };
 
   return (
-    <div className="bg-[#FAFAFA] w-11/12 mx-auto mt-7">
+    <div className="bg-[#FAFAFA] md:w-11/12 mx-auto mt-7">
+      <div className="text-center text-2xl font-semibold">Post Job</div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="px-12 py-11">
+        <div className="md:px-12 px-6 py-11">
           {/* row-1 */}
           <div className="md:flex justify-between mb-4">
             <div className="md:w-45p  flex flex-col gap-2">

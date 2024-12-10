@@ -19,20 +19,20 @@ const Card = ({ data }) => {
               {data.companyName}
             </h2>
             <h3 className="font-semibold mb-1">{data.jobTitle}</h3>
-            <div className="flex gap-2 flex-wrap">
-              <span className="flex text-neutral-500 gap-1 items-center mb-1 gap-2">
+            <div className=" gap-2 flex-wrap hidden md:flex">
+              <span className="flex text-neutral-500 gap-1 items-center mb-1 md:gap-2">
                 <CiLocationOn />
                 {data.jobLocation}
               </span>
-              <span className="flex text-neutral-500 gap-1 items-center mb-1 gap-2">
+              <span className="flex text-neutral-500 gap-1 items-center mb-1 md:gap-2">
                 <MdOutlineWatchLater />
                 {data.employmentType}
               </span>
-              <span className="flex text-neutral-500 gap-1 items-center mb-1 gap-2">
+              <span className="flex text-neutral-500 gap-1 items-center mb-1 md:gap-2">
                 <BsCurrencyDollar />
                 {data.minPrice}-{data.maxPrice}k
               </span>
-              <span className="flex text-neutral-500 gap-1 items-center mb-1 gap-2">
+              <span className="flex text-neutral-500 gap-1 items-center mb-1 md:gap-2">
                 <CiCalendarDate />
                 {data.postingDate}
               </span>

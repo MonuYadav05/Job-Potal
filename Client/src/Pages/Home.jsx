@@ -101,6 +101,7 @@ const Home = () => {
   };
 
   const result = filterData(selectedCategory, jobs, query);
+  const [filterOn, setFilterOn] = useState(false);
 
   return (
     <div>
@@ -109,11 +110,31 @@ const Home = () => {
       {/* Sidebar */}
       <div className="md:flex bg-[#FAFAFA] my-12">
         {/* Left Sidebar */}
-        <div className="bg-white md:w-3/12 md:ml-16 ml-4 my-10">
+        <div className={`bg-white md:w-3/12 md:ml-16 md:hidden ml-4 my-10`}>
+          <h3
+            className="font-semibold text-lg "
+            onClick={() => setFilterOn(!filterOn)}
+          >
+            Filters
+          </h3>
+          {filterOn && (
+            <Sidebar handleChange={handleChange} handleClick={handleClick} />
+          )}
+        </div>
+        <div
+          className={`bg-white md:w-3/12 md:ml-16 hidden md:block ml-4 my-10`}
+        >
+          <h3
+            className="font-semibold text-lg "
+            onClick={() => setFilterOn(!filterOn)}
+          >
+            Filters
+          </h3>
+
           <Sidebar handleChange={handleChange} handleClick={handleClick} />
         </div>
 
-        <div className="bg-white md:w-6/12  mx-6 my-10">
+        <div className={`bg-white md:w-6/12  md:mx-6 my-10`}>
           {isLoading ? (
             <p className="pl-72">Loading...</p>
           ) : result.length > 0 ? (
@@ -155,7 +176,7 @@ const Home = () => {
         </div>
 
         {/* Right sidebar */}
-        <div className="bg-white md:w-3/12  mr-16 my-10">
+        <div className="bg-white md:w-3/12  ml-2 my-10">
           <Newsletter />
         </div>
       </div>

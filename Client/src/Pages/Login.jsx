@@ -36,7 +36,11 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen flex items-center mt-5 justify-center">
+    <div className="bg-gray-100 min-h-screen flex flex-col items-center mt-5 justify-center">
+      Dummy login-
+      <div>email- test@gmail.com</div>
+      <div>password - test</div>
+      <div>Epmloyee</div>
       <form
         onSubmit={handleSubmit}
         className="bg-white p-6 rounded-md shadow-md space-y-4"

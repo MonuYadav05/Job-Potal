@@ -48,7 +48,7 @@ const Navbar = () => {
         {token === null && (
           <div>
             {" "}
-            <div className=" hidden lg:flex justify-center gap-4 mr-14">
+            <div className=" hidden md:flex justify-center gap-4 mr-14">
               <Link
                 to="/login"
                 className="pt-1 px-5 text-blue border h-9 rounded"

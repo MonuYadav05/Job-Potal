@@ -30,7 +30,7 @@ const SalaryPage = () => {
     <div>
       <SalaryHeader title={"Estimate Salary"} path={"salary"} />
 
-      <div className=" flex justify-center mx-auto mt-8 w-6/12">
+      <div className=" flex justify-center mx-auto mt-8 md:w-6/12 px-3">
         <input
           type="text"
           name="search"
@@ -40,14 +40,14 @@ const SalaryPage = () => {
         />
         <button
           onClick={handleSearch}
-          className=" px-5 w-1/5 h-9 bg-blue text-white font-semibold"
+          className=" px-5 md:w-1/5 h-9 bg-blue text-white font-semibold"
         >
           Search
         </button>
       </div>
 
       {/* display data */}
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10 mx-20 my-20">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-10 md:mx-20 mx-3 my-20">
         {salary.map((data) => {
           return (
             <div key={data.id} className=" px-4 py-5 shadow-lg">

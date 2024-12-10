@@ -61,7 +61,7 @@ const MyJobs = () => {
 
   return (
     <div>
-      <div className="text-center w-6/12 mt-12 mx-auto">
+      <div className="text-center md:w-6/12 p-2 md:mt-12 md:mx-auto">
         <h1 className="text-gray-800 my-8">All My Jobs</h1>
         <div className="w-full flex">
           <input
@@ -80,7 +80,7 @@ const MyJobs = () => {
         </div>
       </div>
 
-      <div className=" w-8/12 mt-12 mx-auto  shadow-lg">
+      <div className=" md:w-8/12 mt-12 mx-auto  shadow-lg">
         <div className="w-full">
           <div className="flex justify-between my-3 mx-8">
             <h1 className="font-semibold ">All Jobs</h1>
@@ -98,11 +98,13 @@ const MyJobs = () => {
           ) : (
             <table className="w-full">
               <thead>
-                <tr className="grid grid-cols-6 h-9 py-2 border text-sm">
-                  <th className="font-semibold">NO.</th>
+                <tr className="grid md:grid-cols-6 grid-cols-4  h-9 py-2 border text-sm">
+                  <th className="font-semibold hidden md:block">NO.</th>
                   <th className="font-semibold">TITLE</th>
-                  <th className="font-semibold">COMPANY NAME</th>
-                  <th className="font-semibold">SALARY</th>
+                  <th className="font-semibold hidden md:block">
+                    COMPANY NAME
+                  </th>
+                  <th className="font-semibold ">SALARY</th>
                   <th className="font-semibold">EDIT</th>
                   <th className="font-semibold">DELETE</th>
                 </tr>

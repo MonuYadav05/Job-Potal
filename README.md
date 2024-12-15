@@ -19,7 +19,7 @@ Job Search: Job seekers can search for jobs based on various filters.
 Job Application: Job seekers can apply to jobs directly through the platform.
 
 CRUD Operations: Employers can create, read, update, and delete job postings.
-Responsive Design: The application is Not fully responsive use dekstop site mode for better experience.
+Responsive Design: The application is responsive can use in dekstop site and mobile both mode .
 
 Tech Stack
 

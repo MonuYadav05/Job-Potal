@@ -15,6 +15,7 @@ import PrivateRoute from "./Components/Auth/PrivateRoute";
 import Dashboard from "./Pages/Dashboard";
 import ForgetPassword from "./Pages/ForgetPassword";
 import ResetPass from "./Components/Auth/ResetPass";
+import SettingsPage from "./Components/Dashboard/SettingPage/SettingsPage";
 
 function App() {
   return (
@@ -79,13 +80,18 @@ function App() {
         ></Route>
 
         <Route
-          path="/dashboard/my-profile"
+          path="/dashboard"
           element={
             <PrivateRoute>
               <Dashboard />
             </PrivateRoute>
           }
-        ></Route>
+        >
+          {/* <Route path="my-profile" element={<HomePage />} /> */}
+          {/* <Route path="profile" element={<ProfilePage />} /> */}
+          {/* <Route path="profile" element={<ProfilePage />} />  */}
+          <Route path="settings" element={<SettingsPage />} />
+        </Route>
 
         <Route path="/forget-password" element={<ForgetPassword />}></Route>
         <Route path="/resetPassword/:string" element={<ResetPass />}></Route>

@@ -73,9 +73,9 @@ export function login(loginData, navigate) {
     try {
       const response = await apiConnector("POST", LOGIN_API, loginData);
 
-      console.log("Login Response.....", response);
+      // console.log("Login Response.....", response);
 
-      console.log(response);
+      // console.log(response);
 
       if (!response.data.success) {
         throw new Error(response.data.message);

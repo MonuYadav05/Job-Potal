@@ -12,17 +12,17 @@ import VerifyEmail from "./Pages/VerifyEmail";
 import Login from "./Pages/Login";
 import OpenRoute from "./Components/Auth/OpenRoute";
 import PrivateRoute from "./Components/Auth/PrivateRoute";
-import Dashboard from "./Pages/Dashboard";
 import ForgetPassword from "./Pages/ForgetPassword";
 import ResetPass from "./Components/Auth/ResetPass";
-import SettingsPage from "./Components/Dashboard/SettingPage/SettingsPage";
+import LandingPage from "./Pages/LandingPage";
 
 function App() {
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route path="/" element={<LandingPage />}></Route>
+        <Route path="/search" element={<Home />}></Route>
         <Route path="/job/:id" element={<JobDetail />}></Route>
         <Route path="/salary" element={<SalaryPage />}></Route>
 
@@ -79,7 +79,7 @@ function App() {
           }
         ></Route>
 
-        <Route
+        {/* <Route
           path="/dashboard"
           element={
             <PrivateRoute>
@@ -87,11 +87,11 @@ function App() {
             </PrivateRoute>
           }
         >
-          {/* <Route path="my-profile" element={<HomePage />} /> */}
-          {/* <Route path="profile" element={<ProfilePage />} /> */}
-          {/* <Route path="profile" element={<ProfilePage />} />  */}
+          <Route path="my-profile" element={<HomePage />} />
+          <Route path="profile" element={<ProfilePage />} />
+          <Route path="profile" element={<ProfilePage />} />
           <Route path="settings" element={<SettingsPage />} />
-        </Route>
+        </Route> */}
 
         <Route path="/forget-password" element={<ForgetPassword />}></Route>
         <Route path="/resetPassword/:string" element={<ResetPass />}></Route>

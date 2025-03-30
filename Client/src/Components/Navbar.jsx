@@ -15,7 +15,7 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { path: "/", title: "Start a search" },
+    { path: "/search", title: "Start a search" },
     { path: "/my-job", title: "My Jobs" },
     { path: "/salary", title: "Salary Estimate" },
     { path: "/post-job", title: "Post A Job" },
@@ -28,7 +28,7 @@ const Navbar = () => {
           <a href="/">
             <img src="logo.png" alt="logo" className="w-6 h-7 " />
           </a>
-          JobPortal
+          JobHub
         </div>
 
         <div>
@@ -81,9 +81,8 @@ const Navbar = () => {
       </nav>
 
       <div
-        className={`text-sm text-white py-5 mt-5 mr-5 ${
-          isMenuOpen ? "" : "hidden"
-        } bg-black p-3 ml-3 `}
+        className={`text-sm text-white py-5 mt-5 mr-5 ${isMenuOpen ? "" : "hidden"
+          } bg-black p-3 ml-3 `}
       >
         <ul>
           {navItems.map(({ path, title }) => {

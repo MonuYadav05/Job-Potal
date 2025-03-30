@@ -66,7 +66,6 @@ const Home = () => {
     }
   };
 
-  // -----------main function-------
   const filterData = (selectedCategory, jobs, query) => {
     let filteredJobs = filteredItems;
 

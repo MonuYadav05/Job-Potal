@@ -54,15 +54,14 @@ const ProfileDropdown = () => {
 
       <div
         ref={ref}
-        className={`absolute flex flex-col top-[110%] right-[-10%] text-white font-semibold justify-center items-start bg-blue rounded-lg p-3 transform transition-all duration-500 ease-in-out ${
-          open
-            ? "opacity-100 scale-100"
-            : "opacity-0 scale-95 pointer-events-none"
-        }`}
+        className={`absolute flex flex-col top-[110%] right-[-10%] text-white font-semibold justify-center items-start bg-blue rounded-lg p-3 transform transition-all duration-500 ease-in-out ${open
+          ? "opacity-100 scale-100"
+          : "opacity-0 scale-95 pointer-events-none"
+          }`}
       >
         <Link
           onClick={() => setOpen(false)}
-          to="/dashboard/my-profile"
+          to="/search"
           className="flex flex-row gap-x-1 py-[10px] px-[12px] text-lg justify-center hover:text-neutral-700 items-center"
         >
           <VscDashboard className="text-lg" />

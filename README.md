@@ -5,6 +5,8 @@ live link - https://client-ashen-chi.vercel.app/
 
 A job portal application built using React, Node.js, Express, Tailwind CSS, and MongoDB. This platform allows employers to post job openings and job seekers to search and apply for jobs.
 
+![image](https://github.com/user-attachments/assets/59135f07-513c-474d-9bb6-09fdcd7e307a)
+
 
 
 Live Demo
